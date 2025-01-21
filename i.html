@@ -8,6 +8,7 @@
       body {
         background: url("https://media.istockphoto.com/id/498478219/photo/stars-at-night-sky.jpg?s=612x612&w=0&k=20&c=M_XD9zraaC1-1Wbvxk5XMU_Qwc5Lwsi7YbSmYbCoXi4=");
         height: 100vh;
+        overflow: hidden;
       }
 
       span {
@@ -18,10 +19,14 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        background-size: cover;
       }
     </style>
   </head>
   <body>
     <span></span>
+    <script>
+      const bodyEl = document.querySelector("body");
+    </script>
   </body>
 </html>
