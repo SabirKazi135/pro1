@@ -20,13 +20,45 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-size: cover;
+        pointer-events: none;
+        animation: animate 6s;
+      }
+
+      @keyframes animate {
+        0% {
+          transform: translate(-50%, -50%);
+          opacity: 1;
+          filter: hue-rotate(0);
+        }
+        100% {
+          transform: translate(-50%, -5000%);
+          opacity: 0;
+          filter: hue-rotate(720deg);
+        }
       }
     </style>
   </head>
   <body>
-    <span></span>
     <script>
       const bodyEl = document.querySelector("body");
+
+      bodyEl.addEventListener("mousemove", (event) => {
+        const Xpos = event.offsetX;
+        const Ypos = event.offsetY;
+
+        const spanEl = document.createElement("span");
+        spanEl.style.top = Ypos + "px";
+        spanEl.style.left = Xpos + "px";
+
+        const size = Math.random * 150;
+        spanEl.style.width = size + "px";
+        spanEl.style.height = size + "px";
+        bodyEl.appendChild(spanEl);
+
+        setTimeout(() => {
+          spanEl.remove();
+        }, 3000);
+      });
     </script>
   </body>
 </html>
