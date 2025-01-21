@@ -20,8 +20,27 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>I m a Student</h1>
-    </div>
+    <div class="container"></div>
+    <script>
+      const containerEl = document.querySelector(".container");
+
+      const careers = ["Youtube", "Web Developer", "Freelancer", "Intructor"];
+      let careersIndex = 0;
+      let characterIndex = 0;
+
+      function upateText() {
+        characterIndex++;
+        containerEl.innerHTML = `
+          <h1>I m a ${careers[careersIndex].slice(0, characterIndex)}</h1>
+          `;
+        if (characterIndex === careers[careersIndex].length) {
+          careersIndex++;
+          characterIndex = 0;
+        }
+        setTimeout(upateText, 400);
+      }
+
+      upateText();
+    </script>
   </body>
 </html>
