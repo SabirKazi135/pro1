@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+      body {
+        margin: 0px;
+        background-color: coral;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Permanent Marker", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .con {
+        font-size: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con">I am a student</div>
+    <script>
+      const bodyEl = document.querySelector("body");
+      const conEl = document.querySelector("div");
+      const careers = ["Youtuber", "Web Developer", "Instructor", "Student"];
+
+      let careersIndex = 0;
+      let characterIndex = 0;
+
+      function updateText() {
+        characterIndex++;
+
+        conEl.innerHTML = `
+I am ${careers[careersIndex][0] === "I" ? "an" : "a"} ${careers[
+          careersIndex
+        ].slice(0, characterIndex)}
+        `;
+
+        if (characterIndex === careers[careersIndex].length) {
+          careersIndex++;
+          characterIndex = 0;
+        }
+
+        if (careersIndex === careers.length) {
+          careersIndex = 0;
+        }
+
+        setTimeout(updateText, 400);
+      }
+
+      updateText();
+    </script>
+  </body>
+</html>
