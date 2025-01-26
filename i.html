@@ -157,6 +157,7 @@
 
       <div class="output">
         <p id="label">Output</p>
+        <p id="details"></p>
         <p id="result">Select a coffee to see details</p>
       </div>
     </div>
@@ -225,28 +226,16 @@
         },
       };
 
-      // let resources = {
-      //   water: 5000,
-      //   milk: 3000,
-      //   coffee: 2000,
-      //   sugar: 1000,
-      //   chocolate: 800,
-      //   vanilla: 500,
-      //   caramel: 600,
-      //   cream: 700,
-      //   whiskey: 200,
-      // };
-
       let resources = {
-        water: 0,
-        milk: 0,
-        coffee: 0,
-        sugar: 0,
-        chocolate: 0,
-        vanilla: 0,
-        caramel: 0,
-        cream: 0,
-        whiskey: 0,
+        water: 5000, // Amount of water available in ml
+        milk: 3000, // Amount of milk available in ml
+        coffee: 2000, // Amount of coffee available in grams
+        sugar: 1000, // Amount of sugar available in grams
+        chocolate: 800, // Amount of chocolate available in grams
+        vanilla: 500, // Amount of vanilla available in grams
+        caramel: 600, // Amount of caramel available in grams
+        cream: 700, // Amount of cream available in grams
+        whiskey: 200, // Amount of whiskey available in grams
       };
 
       let money = 0;
@@ -255,23 +244,25 @@
       let choosenCoffe = "";
       let ingredients = {};
 
+      const details = document.getElementById("details");
+
       let remain = 0;
       const keys = Object.keys(menu);
       const result = document.getElementById("result");
+
       function showReport() {
         result.textContent = "";
         result.innerHTML += `water: ${resources["water"]} <br>Milk: ${resources["milk"]} <br>Coffee: ${resources["coffee"]} <br>Sugar: ${resources["sugar"]} <br>Chocolate: ${resources["chocolate"]} <br>Vanilla: ${resources["vanilla"]} <br>Caramel: ${resources["caramel"]} <br>Cream: ${resources["cream"]} <br>Whiskey: ${resources["whiskey"]} <br>Money: ₹${money}`;
       }
+
       function capitalizeFirstLetter(str) {
         if (!str) return "";
         return str.charAt(0).toUpperCase() + str.slice(1);
       }
 
       // Usage
-
       function askMoney() {
-        let m; // Assuming `c` is the index for the chosen coffee
-
+        let m;
         // Prompt the user to enter the amount of money they are paying
         while (true) {
           m = parseInt(
@@ -308,20 +299,37 @@
       }
 
       function addIngredients() {
-        ingredients = menu["espresso"]["ingredients"];
+        ingredients = menu[choosenCoffe]["ingredients"];
       }
 
       function checkResources() {
-        let not = "";
+        let missingIngredients = [];
         for (const ingredient in ingredients) {
-          // If the required ingredient amount is greater than the available resource, return false
+          // If the required ingredient amount is greater than the available resource, add it to missingIngredients
           if (ingredients[ingredient] > resources[ingredient]) {
-            not += `${ingredient} `;
-            alert(`Sorry! ${not} are not available hell`);
-            return false;
+            missingIngredients.push(ingredient);
           }
         }
+
+        if (missingIngredients.length > 0) {
+          alert(
+            `Sorry! The following ingredients are not available: ${missingIngredients.join(
+              ", "
+            )}`
+          );
+          return false; // Resources are not enough
+        }
+
+        // Deduct the ingredients after making the coffee
+        for (const ingredient in ingredients) {
+          resources[ingredient] -= ingredients[ingredient];
+        }
+
         return true; // All resources are sufficient
+      }
+
+      function showOutput() {
+        details.innerHTML = `Here is your `;
       }
 
       function make(c) {
@@ -330,8 +338,9 @@
         askMoney();
         checkmoney();
         addIngredients();
-        if (checkResources) {
-          alert("not enought resources");
+        if (checkResources()) {
+          money = money + givenMoney;
+          showOutput();
         }
       }
     </script>
