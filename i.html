@@ -241,6 +241,7 @@
       const rup = "₹";
       let givenMoney = 0;
       let choosenCoffe = "";
+      let ingredients = {};
       const keys = Object.keys(menu);
       const result = document.getElementById("result");
       function showReport() {
@@ -263,8 +264,8 @@
             prompt(
               `The cost is ₹${
                 menu[choosenCoffe]["cost"]
-              } for ${capitalizeFirstLetter(choosenCoffe)}. 
-Enter the amount you are paying: `
+              } for ${capitalizeFirstLetter(choosenCoffe)}.
+      Enter the amount you are paying: `
             ),
             10
           );
@@ -280,11 +281,33 @@ Enter the amount you are paying: `
         givenMoney = m;
       }
 
+      function addIngredients() {
+        ingredients = menu["espresso"]["ingredients"];
+        console.log(ingredients);
+      }
+
+      function checkResources() {
+        let limit = true;
+        for (const resource in resources) {
+          for (const r in ingredients) {
+            if (ingredients[r] === resources[resource]) {
+              if (ingredients[r] < resources[resource]) {
+                return false;
+              }
+            }
+          }
+        }
+      }
+
       function make(c) {
         choosenCoffe = keys[c - 1];
 
         askMoney();
-        checkResources();
+        checkmoney();
+        addIngredients();
+        if (!checkResources) {
+          alert("not enought resources");
+        }
       }
     </script>
   </body>
