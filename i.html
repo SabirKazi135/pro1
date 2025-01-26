@@ -11,14 +11,15 @@
         font-family: "Poppins", sans-serif;
         display: flex;
         justify-content: center;
+        box-sizing: border-box;
         align-items: center;
       }
 
       .con {
         text-align: center;
         padding: 30px;
-        max-height: 1000px;
-        min-height: auto;
+        width: 100%;
+        max-width: 1000px;
         border-radius: 15px;
         background: linear-gradient(145deg, #222222, #1a1a1a);
         box-shadow: 5px 5px 15px #0f0f0f, -5px -5px 15px #292929;
@@ -29,7 +30,7 @@
         color: #ffcc00;
       }
 
-      #set {
+      .set {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 15px;
@@ -37,7 +38,6 @@
       }
 
       .coffeBox {
-        margin: 20px 0px;
         background-color: #333;
         border: 1px solid #444;
         padding: 15px;
@@ -60,6 +60,19 @@
         font-size: 0.9rem;
         color: #ffcc00;
         margin-top: 5px;
+      }
+      #report-btn {
+        background-color: #ff5722;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 10px 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      #report-btn:hover {
+        background-color: #e64a19;
       }
     </style>
   </head>
