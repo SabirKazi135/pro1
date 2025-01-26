@@ -238,14 +238,54 @@
       };
 
       let money = 0;
+      const rup = "₹";
+      let givenMoney = 0;
+      let choosenCoffe = "";
+      const keys = Object.keys(menu);
       const result = document.getElementById("result");
       function showReport() {
         result.textContent = "";
         result.innerHTML += `water: ${resources["water"]} <br>Milk: ${resources["milk"]} <br>Coffee: ${resources["coffee"]} <br>Sugar: ${resources["sugar"]} <br>Chocolate: ${resources["chocolate"]} <br>Vanilla: ${resources["vanilla"]} <br>Caramel: ${resources["caramel"]} <br>Cream: ${resources["cream"]} <br>Whiskey: ${resources["whiskey"]} <br>Money: ₹${money}`;
       }
+      function capitalizeFirstLetter(str) {
+        if (!str) return "";
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
 
-      let givenMoney = 0;
-      function make(c) {}
+      // Usage
+
+      function askMoney() {
+        let m; // Assuming `c` is the index for the chosen coffee
+
+        // Prompt the user to enter the amount of money they are paying
+        while (true) {
+          m = parseInt(
+            prompt(
+              `The cost is ₹${
+                menu[choosenCoffe]["cost"]
+              } for ${capitalizeFirstLetter(choosenCoffe)}. 
+Enter the amount you are paying: `
+            ),
+            10
+          );
+
+          // Validate that the input is a positive number
+          if (!isNaN(m) && m > 0) {
+            break; // Valid input, exit the loop
+          } else {
+            alert("Please enter a valid positive number.");
+          }
+        }
+
+        givenMoney = m;
+      }
+
+      function make(c) {
+        choosenCoffe = keys[c - 1];
+
+        askMoney();
+        checkResources();
+      }
     </script>
   </body>
 </html>
