@@ -101,6 +101,10 @@
         font-weight: bold;
         color: #4caf50;
       }
+
+      p {
+        text-align: left;
+      }
     </style>
   </head>
   <body>
@@ -329,9 +333,10 @@
       }
 
       function showOutput() {
-        details.innerHTML = `Here is your ${capitalizeFirstLetter(
+        result.innerHTML = "";
+        details.innerHTML = `Here is your <span class="green">${capitalizeFirstLetter(
           choosenCoffe
-        )}. Enjoy!<br><br>Ingredients used:<br>`;
+        )}</span>. Enjoy!<br><br>Ingredients used:<br>`;
 
         for (const ingredient in ingredients) {
           details.innerHTML += `- ${capitalizeFirstLetter(ingredient)}: ${
@@ -339,6 +344,7 @@
           }<br>`;
         }
 
+        details.innerHTML += `Change: <span class="green">${remain}</span><br>`;
         details.innerHTML += `<br>Remaining resources:<br>`;
 
         for (const resource in resources) {
