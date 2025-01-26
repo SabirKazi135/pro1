@@ -7,13 +7,59 @@
     <style>
       body {
         background-color: #1a1a1a;
-
+        height: 100vh;
         font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .con {
+        text-align: center;
+        padding: 30px;
+        max-height: 1000px;
+        min-height: auto;
+        border-radius: 15px;
         background: linear-gradient(145deg, #222222, #1a1a1a);
         box-shadow: 5px 5px 15px #0f0f0f, -5px -5px 15px #292929;
+      }
+
+      h1 {
+        font-size: 32px;
+        color: #ffcc00;
+      }
+
+      #set {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin: 20px 0px;
+      }
+
+      .coffeBox {
+        margin: 20px 0px;
+        background-color: #333;
+        border: 1px solid #444;
+        padding: 15px;
+        cursor: pointer;
+        border-radius: 8px;
+        border: none;
+        transition: transform 0.2s, background-color 0.2s;
+
+        color: #eaeaea;
+        font-size: 1rem;
+      }
+
+      .coffeBox:hover {
+        background-color: #444;
+        transform: scale(1.05);
+      }
+
+      span {
+        display: block;
+        font-size: 0.9rem;
+        color: #ffcc00;
+        margin-top: 5px;
       }
     </style>
   </head>
@@ -23,18 +69,46 @@
       <div class="set">
         <button class="coffeBox" id="Espresso" onclick="make(1)">
           Espresso
+          <br />
+          <span class="rup">₹15</span>
         </button>
-        <button class="coffeBox" id="Latte" onclick="make(2)">Latte</button>
-        <button class="coffeBox" id="" onclick="make(3)">Cappuccino</button>
-        <button class="coffeBox" id="" onclick="make(4)">Mocha</button>
-        <button class="coffeBox" id="" onclick="make(5)">blackCoffee</button>
-        <button class="coffeBox" id="" onclick="make(6)">VanillaLatte</button>
+        <button class="coffeBox" id="Latte" onclick="make(2)">
+          Latte <br />
+          <span class="rup">₹25</span>
+        </button>
+        <button class="coffeBox" id="" onclick="make(3)">
+          Cappuccino <br />
+          <span class="rup">₹30</span>
+        </button>
+        <button class="coffeBox" id="" onclick="make(4)">
+          Mocha <br />
+          <span class="rup">₹35</span>
+        </button>
+        <button class="coffeBox" id="" onclick="make(5)">
+          blackCoffee <br />
+          <span class="rup">₹10</span>
+        </button>
+        <button class="coffeBox" id="" onclick="make(6)">
+          VanillaLatte <br />
+          <span class="rup">₹40</span>
+        </button>
         <button class="coffeBox" id="" onclick="make(7)">
           CaramelMacchiato
+          <br />
+          <span class="rup">₹45</span>
         </button>
-        <button class="coffeBox" id="" onclick="make(8)">Americano</button>
-        <button class="coffeBox" id="" onclick="make(9)">FlatWhite</button>
-        <button class="coffeBox" id="" onclick="make(10)">IrishCoffee</button>
+        <button class="coffeBox" id="" onclick="make(8)">
+          Americano <br />
+          <span class="rup">₹20</span>
+        </button>
+        <button class="coffeBox" id="" onclick="make(9)">
+          FlatWhite <br />
+          <span class="rup">₹28</span>
+        </button>
+        <button class="coffeBox" id="" onclick="make(10)">
+          IrishCoffee <br />
+          <span class="rup">₹50</span>
+        </button>
       </div>
 
       <button id="report-btn">View Machine Report</button>
