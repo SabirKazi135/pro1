@@ -6,59 +6,113 @@
     <title>Document</title>
     <style>
       body {
-        background: url("https://media.istockphoto.com/id/498478219/photo/stars-at-night-sky.jpg?s=612x612&w=0&k=20&c=M_XD9zraaC1-1Wbvxk5XMU_Qwc5Lwsi7YbSmYbCoXi4=");
-        height: 100vh;
-        overflow: hidden;
+        background-color: #1a1a1a;
+
+        font-family: "Poppins", sans-serif;
       }
 
-      span {
-        background: url("https://cdn1.iconfinder.com/data/icons/instagram-23/512/198_Love_Instagram_Interface_Like-512.png");
-        height: 100px;
-        width: 100px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-size: cover;
-        pointer-events: none;
-        animation: animate 6s;
-      }
-
-      @keyframes animate {
-        0% {
-          transform: translate(-50%, -50%);
-          opacity: 1;
-          filter: hue-rotate(0);
-        }
-        100% {
-          transform: translate(-50%, -5000%);
-          opacity: 0;
-          filter: hue-rotate(720deg);
-        }
+      .con {
+        background: linear-gradient(145deg, #222222, #1a1a1a);
+        box-shadow: 5px 5px 15px #0f0f0f, -5px -5px 15px #292929;
       }
     </style>
   </head>
   <body>
+    <div class="con">
+      <h1>Modern Coffee Machine (₹)</h1>
+      <div class="set">
+        <button class="coffeBox" id="Espresso" onclick="make(1)">
+          Espresso
+        </button>
+        <button class="coffeBox" id="Latte" onclick="make(2)">Latte</button>
+        <button class="coffeBox" id="" onclick="make(3)">Cappuccino</button>
+        <button class="coffeBox" id="" onclick="make(4)">Mocha</button>
+        <button class="coffeBox" id="" onclick="make(5)">blackCoffee</button>
+        <button class="coffeBox" id="" onclick="make(6)">VanillaLatte</button>
+        <button class="coffeBox" id="" onclick="make(7)">
+          CaramelMacchiato
+        </button>
+        <button class="coffeBox" id="" onclick="make(8)">Americano</button>
+        <button class="coffeBox" id="" onclick="make(9)">FlatWhite</button>
+        <button class="coffeBox" id="" onclick="make(10)">IrishCoffee</button>
+      </div>
+    </div>
     <script>
-      const bodyEl = document.querySelector("body");
+      const menu = {
+        espresso: {
+          ingredients: { water: 50, coffee: 18, sugar: 10 },
+          cost: 15,
+        },
+        latte: {
+          ingredients: { water: 200, milk: 150, coffee: 24, sugar: 15 },
+          cost: 25,
+        },
+        cappuccino: {
+          ingredients: { water: 250, milk: 100, coffee: 24, chocolate: 20 },
+          cost: 30,
+        },
+        mocha: {
+          ingredients: {
+            water: 200,
+            milk: 150,
+            coffee: 24,
+            chocolate: 30,
+            sugar: 10,
+          },
+          cost: 35,
+        },
+        blackCoffee: {
+          ingredients: { water: 150, coffee: 20, sugar: 5 },
+          cost: 10,
+        },
+        vanillaLatte: {
+          ingredients: {
+            water: 200,
+            milk: 150,
+            coffee: 24,
+            sugar: 15,
+            vanilla: 5,
+          },
+          cost: 40,
+        },
+        caramelMacchiato: {
+          ingredients: {
+            water: 200,
+            milk: 150,
+            coffee: 24,
+            sugar: 10,
+            caramel: 20,
+          },
+          cost: 45,
+        },
+        americano: { ingredients: { water: 250, coffee: 20 }, cost: 20 },
+        flatWhite: {
+          ingredients: { water: 150, milk: 200, coffee: 24 },
+          cost: 28,
+        },
+        irishCoffee: {
+          ingredients: {
+            water: 200,
+            coffee: 24,
+            sugar: 20,
+            cream: 30,
+            whiskey: 15,
+          },
+          cost: 50,
+        },
+      };
 
-      bodyEl.addEventListener("mousemove", (event) => {
-        const Xpos = event.offsetX;
-        const Ypos = event.offsetY;
-
-        const spanEl = document.createElement("span");
-        spanEl.style.top = Ypos + "px";
-        spanEl.style.left = Xpos + "px";
-
-        const size = Math.random() * 150;
-        spanEl.style.width = size + "px";
-        spanEl.style.height = size + "px";
-        bodyEl.appendChild(spanEl);
-
-        setTimeout(() => {
-          spanEl.remove();
-        }, 3000);
-      });
+      let resources = {
+        water: 5000,
+        milk: 3000,
+        coffee: 2000,
+        sugar: 1000,
+        chocolate: 800,
+        vanilla: 500,
+        caramel: 600,
+        cream: 700,
+        whiskey: 200,
+      };
     </script>
   </body>
 </html>
