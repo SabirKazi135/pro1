@@ -329,7 +329,25 @@
       }
 
       function showOutput() {
-        details.innerHTML = `Here is your `;
+        details.innerHTML = `Here is your ${capitalizeFirstLetter(
+          choosenCoffe
+        )}. Enjoy!<br><br>Ingredients used:<br>`;
+
+        for (const ingredient in ingredients) {
+          details.innerHTML += `- ${capitalizeFirstLetter(ingredient)}: ${
+            ingredients[ingredient]
+          }<br>`;
+        }
+
+        details.innerHTML += `<br>Remaining resources:<br>`;
+
+        for (const resource in resources) {
+          details.innerHTML += `- ${capitalizeFirstLetter(resource)}: ${
+            resources[resource]
+          }ml<br>`;
+        }
+
+        details.innerHTML += `<br>Money: ₹${money}`;
       }
 
       function make(c) {
