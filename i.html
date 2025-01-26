@@ -237,13 +237,15 @@
         whiskey: 200,
       };
 
+      let money = 0;
       const result = document.getElementById("result");
       function showReport() {
         result.textContent = "";
-        for (const [resource, quantity] of Object.entries(resources)) {
-          result.innerHTML += `${resource}: ${quantity} <br>`;
-        }
+        result.innerHTML += `water: ${resources["water"]} <br>Milk: ${resources["milk"]} <br>Coffee: ${resources["coffee"]} <br>Sugar: ${resources["sugar"]} <br>Chocolate: ${resources["chocolate"]} <br>Vanilla: ${resources["vanilla"]} <br>Caramel: ${resources["caramel"]} <br>Cream: ${resources["cream"]} <br>Whiskey: ${resources["whiskey"]} <br>Money: ₹${money}`;
       }
+
+      let givenMoney = 0;
+      function make(c) {}
     </script>
   </body>
 </html>
