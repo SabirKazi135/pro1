@@ -225,16 +225,28 @@
         },
       };
 
+      // let resources = {
+      //   water: 5000,
+      //   milk: 3000,
+      //   coffee: 2000,
+      //   sugar: 1000,
+      //   chocolate: 800,
+      //   vanilla: 500,
+      //   caramel: 600,
+      //   cream: 700,
+      //   whiskey: 200,
+      // };
+
       let resources = {
-        water: 5000,
-        milk: 3000,
-        coffee: 2000,
-        sugar: 1000,
-        chocolate: 800,
-        vanilla: 500,
-        caramel: 600,
-        cream: 700,
-        whiskey: 200,
+        water: 0,
+        milk: 0,
+        coffee: 0,
+        sugar: 0,
+        chocolate: 0,
+        vanilla: 0,
+        caramel: 0,
+        cream: 0,
+        whiskey: 0,
       };
 
       let money = 0;
@@ -242,6 +254,8 @@
       let givenMoney = 0;
       let choosenCoffe = "";
       let ingredients = {};
+
+      let remain = 0;
       const keys = Object.keys(menu);
       const result = document.getElementById("result");
       function showReport() {
@@ -281,22 +295,33 @@
         givenMoney = m;
       }
 
+      function checkmoney() {
+        if (givenMoney < menu[choosenCoffe]["cost"]) {
+          alert(
+            `Sorry! You have given less ${rup}${
+              menu[choosenCoffe]["cost"] - givenMoney
+            } rupee`
+          );
+        } else {
+          remain = givenMoney - menu[choosenCoffe]["cost"];
+        }
+      }
+
       function addIngredients() {
         ingredients = menu["espresso"]["ingredients"];
-        console.log(ingredients);
       }
 
       function checkResources() {
-        let limit = true;
-        for (const resource in resources) {
-          for (const r in ingredients) {
-            if (ingredients[r] === resources[resource]) {
-              if (ingredients[r] < resources[resource]) {
-                return false;
-              }
-            }
+        let not = "";
+        for (const ingredient in ingredients) {
+          // If the required ingredient amount is greater than the available resource, return false
+          if (ingredients[ingredient] > resources[ingredient]) {
+            not += `${ingredient} `;
+            alert(`Sorry! ${not} are not available hell`);
+            return false;
           }
         }
+        return true; // All resources are sufficient
       }
 
       function make(c) {
@@ -305,7 +330,7 @@
         askMoney();
         checkmoney();
         addIngredients();
-        if (!checkResources) {
+        if (checkResources) {
           alert("not enought resources");
         }
       }
