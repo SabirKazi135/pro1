@@ -93,6 +93,8 @@
 
       #result {
         text-align: left;
+        line-height: 24px;
+        white-space: pre-wrap;
       }
 
       .green {
@@ -149,7 +151,9 @@
         </button>
       </div>
 
-      <button id="report-btn">View Machine Report</button>
+      <button id="report-btn" onclick="showReport()">
+        View Machine Report
+      </button>
 
       <div class="output">
         <p id="label">Output</p>
@@ -232,6 +236,14 @@
         cream: 700,
         whiskey: 200,
       };
+
+      const result = document.getElementById("result");
+      function showReport() {
+        result.textContent = "";
+        for (const [resource, quantity] of Object.entries(resources)) {
+          result.innerHTML += `${resource}: ${quantity} <br>`;
+        }
+      }
     </script>
   </body>
 </html>
