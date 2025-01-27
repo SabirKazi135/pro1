@@ -31,7 +31,12 @@
     <button id="myButton">My button</button>
     <script>
       const myButton = document.getElementById("myButton");
-      myButton.classList.add("hover");
+      myButton.addEventListener("mouseover", (event) => {
+        event.target.classList.toggle("hover");
+      });
+      myButton.addEventListener("mouseout", (event) => {
+        event.target.classList.toggle("hover");
+      });
       // myButton.classList.remove("enabled");
     </script>
   </body>
