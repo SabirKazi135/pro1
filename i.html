@@ -3,49 +3,225 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Blackjack Game</title>
     <style>
       body {
-        background-color: gray;
+        font-family: Arial, sans-serif;
+        background-color: #1e212d;
+        color: #f5f5f5;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
-      #myButton {
-        font-size: 4rem;
-        margin: 10px;
+
+      .container {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #2c303a;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cards {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px 0;
+      }
+
+      .card {
+        width: 50px;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background-color: #fff;
+        color: #000;
+        font-weight: bold;
+        font-size: 1.2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .score {
+        margin-top: 10px;
+      }
+
+      .actions {
+        margin-top: 20px;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #4caf50;
         border: none;
         border-radius: 5px;
-        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
       }
 
-      .enabled {
-        background-color: lightblue;
-        color: white;
+      .button:hover {
+        background-color: #45a049;
       }
 
-      .hover {
-        box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.2);
-        font-weight: bold;
+      .button.secondary {
+        background-color: #f44336;
       }
 
-      .disable {
-        background-color: grey;
-        color: lightgray;
+      .button.secondary:hover {
+        background-color: #d32f2f;
+      }
+
+      .hidden {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <button id="myButton" class="enable">My button</button>
+    <div class="container">
+      <h1>Blackjack</h1>
+
+      <div id="dealer-section">
+        <h2>Dealer's Cards</h2>
+        <div id="dealer-cards" class="cards"></div>
+        <div id="dealer-score" class="score">Score: ??</div>
+      </div>
+
+      <hr />
+
+      <div id="player-section">
+        <h2>Your Cards</h2>
+        <div id="player-cards" class="cards"></div>
+        <div id="player-score" class="score">Score: 0</div>
+      </div>
+
+      <div id="result" class="score"></div>
+
+      <div class="actions">
+        <button id="deal" class="button">Deal Cards</button>
+        <button id="hit" class="button hidden">Hit</button>
+        <button id="stand" class="button secondary hidden">Stand</button>
+        <button id="restart" class="button hidden">Play Again</button>
+      </div>
+    </div>
+
     <script>
-      const myButton = document.getElementById("myButton");
-      myButton.addEventListener("mouseover", (event) => {
-        event.target.classList.toggle("hover");
+      const cardDeck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+
+      let dealer = { cards: [], score: 0 };
+      let player = { cards: [], score: 0 };
+      let gameOver = false;
+
+      function drawCard() {
+        return cardDeck[Math.floor(Math.random() * cardDeck.length)];
+      }
+
+      function calculateScore(cards) {
+        let score = cards.reduce((a, b) => a + b, 0);
+        let aceCount = cards.filter((card) => card === 11).length;
+        while (score > 21 && aceCount > 0) {
+          score -= 10;
+          aceCount--;
+        }
+        return score;
+      }
+
+      function updateUI() {
+        document.getElementById("dealer-cards").innerHTML = dealer.cards
+          .map((card) => `<div class="card">${card}</div>`)
+          .join("");
+        document.getElementById("dealer-score").textContent = gameOver
+          ? `Score: ${dealer.score}`
+          : `Score: ??`;
+
+        document.getElementById("player-cards").innerHTML = player.cards
+          .map((card) => `<div class="card">${card}</div>`)
+          .join("");
+        document.getElementById(
+          "player-score"
+        ).textContent = `Score: ${player.score}`;
+      }
+
+      function checkResult() {
+        if (player.score > 21) return "You went over! Dealer wins.";
+        if (dealer.score > 21) return "Dealer went over! You win!";
+        if (player.score === dealer.score) return "It's a tie!";
+        return player.score > dealer.score ? "You win!" : "Dealer wins!";
+      }
+
+      function startGame() {
+        dealer = { cards: [], score: 0 };
+        player = { cards: [], score: 0 };
+        gameOver = false;
+
+        document.getElementById("result").textContent = "";
+        document.getElementById("restart").classList.add("hidden");
+        document.getElementById("deal").classList.remove("hidden");
+        document.getElementById("hit").classList.add("hidden");
+        document.getElementById("stand").classList.add("hidden");
+
+        updateUI();
+      }
+
+      document.getElementById("deal").addEventListener("click", () => {
+        dealer.cards = [drawCard(), drawCard()];
+        player.cards = [drawCard(), drawCard()];
+
+        dealer.score = calculateScore(dealer.cards);
+        player.score = calculateScore(player.cards);
+
+        document.getElementById("deal").classList.add("hidden");
+        document.getElementById("hit").classList.remove("hidden");
+        document.getElementById("stand").classList.remove("hidden");
+
+        updateUI();
       });
-      myButton.addEventListener("mouseout", (event) => {
-        event.target.classList.toggle("hover");
+
+      document.getElementById("hit").addEventListener("click", () => {
+        if (gameOver) return;
+        player.cards.push(drawCard());
+        player.score = calculateScore(player.cards);
+        if (player.score > 21) {
+          gameOver = true;
+          document.getElementById("result").textContent = checkResult();
+          document.getElementById("hit").classList.add("hidden");
+          document.getElementById("stand").classList.add("hidden");
+          document.getElementById("restart").classList.remove("hidden");
+        }
+        updateUI();
       });
-      myButton.addEventListener("click", (event) => {
-        event.target.classList.replace("enable", "disabled");
+
+      document.getElementById("stand").addEventListener("click", () => {
+        if (gameOver) return;
+        while (dealer.score < 17) {
+          dealer.cards.push(drawCard());
+          dealer.score = calculateScore(dealer.cards);
+        }
+        gameOver = true;
+        document.getElementById("result").textContent = checkResult();
+        document.getElementById("hit").classList.add("hidden");
+        document.getElementById("stand").classList.add("hidden");
+        document.getElementById("restart").classList.remove("hidden");
+        updateUI();
       });
-      // myButton.classList.remove("enabled");
+
+      document.getElementById("restart").addEventListener("click", startGame);
+
+      startGame();
     </script>
   </body>
 </html>
