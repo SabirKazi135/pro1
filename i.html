@@ -27,6 +27,12 @@
     <div class="myButtons">Button 4</div>
     <script>
       let buttons = document.querySelectorAll(".myButtons");
+
+      const newButton = document.createElement("button");
+      newButton.textContent = "new button";
+      newButton.classList = "myButtons";
+      document.body.appendChild(newButton);
+
       console.log(buttons);
 
       buttons.forEach((button) => {
