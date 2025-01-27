@@ -32,7 +32,7 @@
       newButton.textContent = "new button";
       newButton.classList = "myButtons";
       document.body.appendChild(newButton);
-
+      buttons = document.querySelectorAll(".myButtons");
       console.log(buttons);
 
       buttons.forEach((button) => {
@@ -41,6 +41,9 @@
         });
         button.addEventListener("mouseout", (event) => {
           event.target.style.backgroundColor = "lightblue";
+        });
+        button.addEventListener("click", (event) => {
+          event.target.remove();
         });
       });
     </script>
