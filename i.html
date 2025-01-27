@@ -8,7 +8,7 @@
       body {
         background-color: gray;
       }
-      #myButoons {
+      #myButton {
         font-size: 4rem;
         margin: 10px;
         border: none;
@@ -23,6 +23,10 @@
     </style>
   </head>
   <body>
-    <button id="myButton"></button>
+    <button id="myButton">My button</button>
+    <script>
+      const myButton = document.getElementById("myButton");
+      myButton.classList.add("enabled");
+    </script>
   </body>
 </html>
