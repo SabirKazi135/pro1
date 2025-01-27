@@ -25,6 +25,11 @@
         box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.2);
         font-weight: bold;
       }
+
+      .disable {
+        background-color: grey;
+        color: lightgray;
+      }
     </style>
   </head>
   <body>
@@ -36,6 +41,9 @@
       });
       myButton.addEventListener("mouseout", (event) => {
         event.target.classList.toggle("hover");
+      });
+      myButton.addEventListener("click", (event) => {
+        event.target.classList.replace("enable", "disabled");
       });
       // myButton.classList.remove("enabled");
     </script>
