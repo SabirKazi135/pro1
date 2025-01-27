@@ -8,44 +8,21 @@
       body {
         background-color: gray;
       }
-
-      .myButtons {
+      #myButoons {
         font-size: 4rem;
         margin: 10px;
         border: none;
         border-radius: 5px;
         padding: 10px 15px;
+      }
+
+      .enabled {
         background-color: lightblue;
         color: white;
       }
     </style>
   </head>
   <body>
-    <div class="myButtons">Button 1</div>
-    <div class="myButtons">Button 2</div>
-    <div class="myButtons">Button 3</div>
-    <div class="myButtons">Button 4</div>
-    <script>
-      let buttons = document.querySelectorAll(".myButtons");
-
-      const newButton = document.createElement("button");
-      newButton.textContent = "new button";
-      newButton.classList = "myButtons";
-      document.body.appendChild(newButton);
-      buttons = document.querySelectorAll(".myButtons");
-      console.log(buttons);
-
-      buttons.forEach((button) => {
-        button.addEventListener("mouseover", (event) => {
-          event.target.style.backgroundColor = "tomato";
-        });
-        button.addEventListener("mouseout", (event) => {
-          event.target.style.backgroundColor = "lightblue";
-        });
-        button.addEventListener("click", (event) => {
-          event.target.remove();
-        });
-      });
-    </script>
+    <button id="myButton"></button>
   </body>
 </html>
