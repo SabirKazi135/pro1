@@ -30,7 +30,9 @@
       console.log(buttons);
 
       buttons.forEach((button) => {
-        button.style.backgroundColor = "green";
+        button.addEventListener("click", (event) => {
+          event.target.style.backgroundColor = "tomato";
+        });
       });
     </script>
   </body>
