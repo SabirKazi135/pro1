@@ -143,7 +143,13 @@
         return cardDeck[Math.floor(Math.random() * length)];
       }
 
-      function addCard(p) {}
+      function addCard(p) {
+        if (p == 1) {
+          dealer.card.push(getCard);
+        } else {
+          player.card.push(getCard);
+        }
+      }
 
       function start() {
         hit.classList.remove("disable");
