@@ -136,14 +136,23 @@
       const hit = document.getElementById("hit");
       const stand = document.getElementById("stand");
 
+      const dealer = { card: [], score: 0 };
+      const player = { card: [], score: 0 };
+
       function getCard() {
-        // return Math.random() * length;
         return cardDeck[Math.floor(Math.random() * length)];
       }
+
+      function addCard(p) {}
+
       function start() {
         hit.classList.remove("disable");
         stand.classList.remove("disable");
         document.getElementById("first").classList.add("disable");
+        addCard(1);
+        addCard(1);
+        addCard(2);
+        addCard(2);
       }
     </script>
   </body>
