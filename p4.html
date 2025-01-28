@@ -109,6 +109,11 @@
       .disable {
         display: none;
       }
+
+      #result {
+        margin: 5px;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
@@ -129,7 +134,7 @@
         </div>
         <p>Score: <span id="score2">0</span></p>
       </div>
-      <div class="result"></div>
+      <div id="result"></div>
       <button class="button-g" id="first" onclick="start()">Deal Cards</button>
       <button class="button-g disable" id="hit" onclick="next()">Hit</button
       ><button class="button-r disable" id="stand" onclick="pause()">
