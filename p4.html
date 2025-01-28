@@ -213,7 +213,6 @@
         hit.classList.add("disable");
         stand.classList.add("disable");
         document.getElementById("first").classList.remove("disable");
-
         document.getElementById("first").textContent = "Play Again";
       }
 
@@ -257,12 +256,12 @@
         if (dealer.score() > player.score()) {
           result.innerHTML = "Dealer has more Score. Dealer Won";
         } else {
-          result.innerHTML = "You hvae more Score. You Won";
+          result.innerHTML = "You have more Score. You Won";
         }
       }
 
       function pause() {
-        while (dealer.score() < 16) {
+        while (dealer.score() < 16 && dealer.score() <= 21) {
           addCard(1);
           update();
           updateCard();
