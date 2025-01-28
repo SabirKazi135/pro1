@@ -187,9 +187,19 @@
 
       function addCard(p) {
         if (p == 1) {
-          dealer.card.push();
+          let c = getCard();
+          console.log(c);
+          if (c == 10 && dealer.score() >= 11) {
+            c = 1;
+          }
+          dealer.card.push(c);
         } else {
-          player.card.push(getCard());
+          let c = getCard();
+          console.log(c);
+          if (c == 10 && player.score() >= 11) {
+            c = 1;
+          }
+          player.card.push(c);
         }
       }
 
