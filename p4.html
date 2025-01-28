@@ -116,18 +116,24 @@
       <h1>Blackjack</h1>
       <div>
         <h2>Dealer's Cards</h2>
-        <div class="cards disable"><span>11</span><span>8</span></div>
+        <div class="cards disable" id="store1">
+          <span>11</span><span>8</span>
+        </div>
         <p>Score: <span id="score1">??</span></p>
       </div>
       <hr />
       <div>
         <h2>Your Cards</h2>
-        <div class="cards disable"><span>11</span><span>8</span></div>
+        <div class="cards disable" id="store2">
+          <span>11</span><span>8</span>
+        </div>
         <p>Score: <span id="score2">0</span></p>
       </div>
       <button class="button-g" id="first" onclick="start()">Deal Cards</button>
-      <button class="button-g disable" id="hit">Hit</button
-      ><button class="button-r disable" id="stand">Stand</button>
+      <button class="button-g disable" id="hit" onclick="hit()">Hit</button
+      ><button class="button-r disable" id="stand" onclick="stand()">
+        Stand
+      </button>
     </div>
 
     <script>
@@ -137,6 +143,8 @@
       const stand = document.getElementById("stand");
       const pScore1 = document.getElementById("score1");
       const pScore2 = document.getElementById("score2");
+      const store1 = document.getElementById("store1");
+      const store2 = document.getElementById("store2");
 
       const dealer = {
         card: [],
@@ -161,6 +169,22 @@
         pScore2.textContent = player.score();
       }
 
+      function updateCard() {
+        store1.innerHTML = "";
+        store2.innerHTML = "";
+        dealer.card.forEach((car) => {
+          const span = document.createElement("span");
+          span.textContent = car;
+          store1.appendChild(span);
+        });
+
+        player.card.forEach((car) => {
+          const span = document.createElement("span");
+          span.textContent = car;
+          store2.appendChild(span);
+        });
+      }
+
       function addCard(p) {
         if (p == 1) {
           dealer.card.push(getCard());
@@ -172,6 +196,8 @@
       function start() {
         hit.classList.remove("disable");
         stand.classList.remove("disable");
+        store1.classList.remove("disable");
+        store2.classList.remove("disable");
         document.getElementById("first").classList.add("disable");
         addCard(1);
         addCard(1);
