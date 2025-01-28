@@ -105,6 +105,10 @@
       .score2 {
         color: #fff;
       }
+
+      .disable {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -112,18 +116,18 @@
       <h1>Blackjack</h1>
       <div>
         <h2>Dealer's Cards</h2>
-        <div class="cards"><span>11</span><span>8</span></div>
+        <div class="cards disable"><span>11</span><span>8</span></div>
         <p>Score: <span class="score1">??</span></p>
       </div>
       <hr />
       <div>
         <h2>Your Cards</h2>
-        <div class="cards"><span>11</span><span>8</span></div>
-        <p>Score: <span class="score2">??</span></p>
+        <div class="cards disable"><span>11</span><span>8</span></div>
+        <p>Score: <span class="score2">0</span></p>
       </div>
-      <button class="button-g">Deal Cards</button>
-      <button class="button-g">Hit</button
-      ><button class="button-r">Stand</button>
+      <button class="button-g" id="first">Deal Cards</button>
+      <button class="button-g disable" id="hit">Hit</button
+      ><button class="button-r disable" id="stand">Stand</button>
     </div>
   </body>
 </html>
