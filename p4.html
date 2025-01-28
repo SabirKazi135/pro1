@@ -252,6 +252,23 @@
         update();
         updateCard();
       }
+
+      function compare() {
+        if (dealer.score() > player.score()) {
+          result.innerHTML = "Dealer has more Score. Dealer Won";
+        } else {
+          result.innerHTML = "You hvae more Score. You Won";
+        }
+      }
+
+      function pause() {
+        while (dealer.score() < 16) {
+          getCard(1);
+        }
+        if (dealer.score() < 22) {
+          compare();
+        }
+      }
     </script>
   </body>
 </html>
