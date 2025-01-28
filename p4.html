@@ -194,13 +194,13 @@
       function addCard(p) {
         if (p == 1) {
           let c = getCard();
-          if (c == 10 && dealer.score() >= 11) {
+          if (c == 11 && dealer.score() >= 11) {
             c = 1;
           }
           dealer.card.push(c);
         } else {
           let c = getCard();
-          if (c == 10 && player.score() >= 11) {
+          if (c == 11 && player.score() >= 11) {
             c = 1;
           }
           player.card.push(c);
@@ -263,11 +263,16 @@
 
       function pause() {
         while (dealer.score() < 16) {
-          getCard(1);
+          addCard(1);
+          update();
+          updateCard();
+          checkScore(1);
         }
-        if (dealer.score() < 22) {
+        if (dealer.score() <= 21) {
           compare();
         }
+
+        reset();
       }
     </script>
   </body>
