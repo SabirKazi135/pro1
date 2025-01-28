@@ -373,7 +373,7 @@
         if (checkmoney()) {
           addIngredients();
           if (checkResources()) {
-            money = money + givenMoney;
+            money += menu[choosenCoffe]["cost"]; // Only add the cost of the coffee
             showOutput();
           }
         }
