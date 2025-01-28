@@ -130,8 +130,8 @@
         <p>Score: <span id="score2">0</span></p>
       </div>
       <button class="button-g" id="first" onclick="start()">Deal Cards</button>
-      <button class="button-g disable" id="hit" onclick="hit()">Hit</button
-      ><button class="button-r disable" id="stand" onclick="stand()">
+      <button class="button-g disable" id="hit" onclick="next()">Hit</button
+      ><button class="button-r disable" id="stand" onclick="pause()">
         Stand
       </button>
     </div>
@@ -187,10 +187,16 @@
 
       function addCard(p) {
         if (p == 1) {
-          dealer.card.push(getCard());
+          dealer.card.push();
         } else {
           player.card.push(getCard());
         }
+      }
+
+      function next() {
+        addCard(2);
+        update();
+        updateCard();
       }
 
       function start() {
