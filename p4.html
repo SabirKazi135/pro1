@@ -188,14 +188,12 @@
       function addCard(p) {
         if (p == 1) {
           let c = getCard();
-          console.log(c);
           if (c == 10 && dealer.score() >= 11) {
             c = 1;
           }
           dealer.card.push(c);
         } else {
           let c = getCard();
-          console.log(c);
           if (c == 10 && player.score() >= 11) {
             c = 1;
           }
