@@ -219,6 +219,11 @@
 
       function checkScore(p) {
         if (p == 1) {
+          if (dealer.score() == player.score()) {
+            result.innerHTML = "Both Score's are simillar";
+            reset();
+            return;
+          }
           if (dealer.score() > 21) {
             result.innerHTML = "Dealer went over! You Won";
             reset();
