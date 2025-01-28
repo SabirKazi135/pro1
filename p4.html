@@ -125,13 +125,26 @@
         <div class="cards disable"><span>11</span><span>8</span></div>
         <p>Score: <span class="score2">0</span></p>
       </div>
-      <button class="button-g" id="first">Deal Cards</button>
+      <button class="button-g" id="first" onclick="start()">Deal Cards</button>
       <button class="button-g disable" id="hit">Hit</button
       ><button class="button-r disable" id="stand">Stand</button>
     </div>
 
     <script>
       const cardDeck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+      const length = cardDeck.length;
+      const hit = document.getElementById("hit");
+      const stand = document.getElementById("stand");
+
+      function getCard() {
+        // return Math.random() * length;
+        console.log(Math.random() * length);
+      }
+      function start() {
+        hit.classList.remove("disable");
+        stand.classList.remove("disable");
+        document.getElementById("first").classList.add("disable");
+      }
     </script>
   </body>
 </html>
