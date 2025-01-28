@@ -129,6 +129,7 @@
         </div>
         <p>Score: <span id="score2">0</span></p>
       </div>
+      <div class="result"></div>
       <button class="button-g" id="first" onclick="start()">Deal Cards</button>
       <button class="button-g disable" id="hit" onclick="next()">Hit</button
       ><button class="button-r disable" id="stand" onclick="pause()">
@@ -145,7 +146,7 @@
       const pScore2 = document.getElementById("score2");
       const store1 = document.getElementById("store1");
       const store2 = document.getElementById("store2");
-
+      const result = document.getElementById("result");
       const dealer = {
         card: [],
         score: function () {
@@ -201,10 +202,23 @@
         }
       }
 
+      function checkScore(p) {
+        if (p == 1) {
+          if (dealer.score() > 21) {
+            result.innerHTML = "Dealer went over! You Won";
+          }
+        } else {
+          if (player.score() > 21) {
+            result.innerHTML = "You went over! dealer Won";
+          }
+        }
+      }
+
       function next() {
         addCard(2);
         update();
         updateCard();
+        checkScore(2);
       }
 
       function start() {
