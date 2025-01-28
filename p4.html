@@ -138,12 +138,14 @@
 
       function getCard() {
         // return Math.random() * length;
-        console.log(Math.random() * length);
+        return cardDeck[Math.floor(Math.random() * length)];
       }
       function start() {
         hit.classList.remove("disable");
         stand.classList.remove("disable");
-        document.getElementById("first").classList.add("disable");
+        // document.getElementById("first").classList.add("disable");
+        const r = getCard();
+        console.log(r);
       }
     </script>
   </body>
