@@ -117,13 +117,13 @@
       <div>
         <h2>Dealer's Cards</h2>
         <div class="cards disable"><span>11</span><span>8</span></div>
-        <p>Score: <span class="score1">??</span></p>
+        <p>Score: <span id="score1">??</span></p>
       </div>
       <hr />
       <div>
         <h2>Your Cards</h2>
         <div class="cards disable"><span>11</span><span>8</span></div>
-        <p>Score: <span class="score2">0</span></p>
+        <p>Score: <span id="score2">0</span></p>
       </div>
       <button class="button-g" id="first" onclick="start()">Deal Cards</button>
       <button class="button-g disable" id="hit">Hit</button
@@ -135,12 +135,30 @@
       const length = cardDeck.length;
       const hit = document.getElementById("hit");
       const stand = document.getElementById("stand");
+      const pScore1 = document.getElementById("score1");
+      const pScore2 = document.getElementById("score2");
 
-      const dealer = { card: [], score: 0 };
-      const player = { card: [], score: 0 };
+      const dealer = {
+        card: [],
+        score: function () {
+          return this.card.reduce((sum, current) => sum + current, 0);
+        },
+      };
+
+      const player = {
+        card: [],
+        score: function () {
+          return this.card.reduce((sum, current) => sum + current, 0);
+        },
+      };
 
       function getCard() {
         return cardDeck[Math.floor(Math.random() * length)];
+      }
+
+      function update() {
+        pScore1.textContent = dealer.score();
+        pScore2.textContent = player.score();
       }
 
       function addCard(p) {
@@ -149,9 +167,6 @@
         } else {
           player.card.push(getCard());
         }
-
-        console.log(dealer);
-        console.log(player);
       }
 
       function start() {
@@ -162,6 +177,7 @@
         addCard(1);
         addCard(2);
         addCard(2);
+        update();
       }
     </script>
   </body>
