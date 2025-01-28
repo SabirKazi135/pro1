@@ -145,10 +145,13 @@
 
       function addCard(p) {
         if (p == 1) {
-          dealer.card.push(getCard);
+          dealer.card.push(getCard());
         } else {
-          player.card.push(getCard);
+          player.card.push(getCard());
         }
+
+        console.log(dealer);
+        console.log(player);
       }
 
       function start() {
