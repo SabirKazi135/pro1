@@ -37,12 +37,18 @@
       .cards {
         margin: 10px 0px;
         display: flex;
+        justify-content: center;
+        gap: 10px;
       }
 
-      .card span {
+      .cards span {
         font-size: 19px;
         font-weight: bold;
-        text-align: center;
+        height: 80px;
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #000;
         background-color: #fff;
         box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 5px 0px;
@@ -89,8 +95,9 @@
         <div class="cards"><span>11</span><span>8</span></div>
         <p>Score: <span class="score2">??</span></p>
       </div>
-      <button>Deal Cards</button>
-      <button>Hit</button><button>Stand</button>
+      <button class="button-g">Deal Cards</button>
+      <button class="button-g">Hit</button
+      ><button class="button-r">Stand</button>
     </div>
   </body>
 </html>
