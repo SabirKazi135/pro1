@@ -207,14 +207,27 @@
         }
       }
 
+      function reset() {
+        dealer.card = [];
+        player.card = [];
+        hit.classList.add("disable");
+        stand.classList.add("disable");
+        store1.classList.add("disable");
+        store2.classList.add("disable");
+        document.getElementById("first").classList.remove("disable");
+        reset.innerHTML = "";
+      }
+
       function checkScore(p) {
         if (p == 1) {
           if (dealer.score() > 21) {
             result.innerHTML = "Dealer went over! You Won";
+            reset();
           }
         } else {
           if (player.score() > 21) {
             result.innerHTML = "You went over! dealer Won";
+            reset();
           }
         }
       }
