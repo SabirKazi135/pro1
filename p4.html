@@ -212,10 +212,9 @@
         player.card = [];
         hit.classList.add("disable");
         stand.classList.add("disable");
-        store1.classList.add("disable");
-        store2.classList.add("disable");
         document.getElementById("first").classList.remove("disable");
-        reset.innerHTML = "";
+
+        document.getElementById("first").textContent = "Play Again";
       }
 
       function checkScore(p) {
@@ -240,6 +239,7 @@
       }
 
       function start() {
+        result.innerHTML = "";
         hit.classList.remove("disable");
         stand.classList.remove("disable");
         store1.classList.remove("disable");
