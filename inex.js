@@ -1,26 +1,30 @@
-function walkDog(callback) {
+function walkDog() {
   setTimeout(() => {
     console.log("You walk the Dog");
-    callback();
+    // callback();
   }, 1500);
 }
-function cleanKitchen(callback) {
+function cleanKitchen() {
   setTimeout(() => {
     console.log("You clean the kitchen");
-    callback();
-  }, 1500);
+    // callback();
+  }, 500);
 }
-function takeOutTrash(callback) {
+function takeOutTrash() {
   setTimeout(() => {
     console.log("Take out the trash");
-    callback();
+    // callback();
   }, 2500);
 }
 
-walkDog(() => {
-  cleanKitchen(() => {
-    takeOutTrash(() => {
-      console.log("You finish al tasks");
-    });
-  });
-});
+// walkDog(() => {
+//   cleanKitchen(() => {
+//     takeOutTrash(() => {
+//       console.log("You finish all tasks");
+//     });
+//   });
+// });
+
+walkDog();
+cleanKitchen();
+takeOutTrash();
