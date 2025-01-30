@@ -29,7 +29,9 @@ function task4(callback) {
 task1(() => {
   task2(() => {
     task3(() => {
-      task4(() => console.log("All task comeplted"));
+        task4(() => {
+          task5(()=> console.log("All tasks complete");)
+      });
     });
   });
 });
