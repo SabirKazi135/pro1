@@ -1,7 +1,12 @@
 function walkDog() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("You walk the Dog");
+      const dogWalked = true; // Change to false to test rejection
+      if (dogWalked) {
+        resolve("You walk the Dog");
+      } else {
+        reject("You did not walk the dog");
+      }
     }, 1500); // ✅ Waits 1.5 seconds
   });
 }
@@ -9,7 +14,12 @@ function walkDog() {
 function cleanKitchen() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("You clean the kitchen");
+      const kitchenCleaned = true; // Change to false to test rejection
+      if (kitchenCleaned) {
+        resolve("You clean the kitchen");
+      } else {
+        reject("You did not clean the kitchen");
+      }
     }, 500); // ✅ Waits 0.5 seconds
   });
 }
@@ -17,12 +27,17 @@ function cleanKitchen() {
 function takeOutTrash() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("Take out the trash");
+      const trashTakenOut = true; // Change to false to test rejection
+      if (trashTakenOut) {
+        resolve("Take out the trash");
+      } else {
+        reject("You did not take out the trash");
+      }
     }, 10000); // ✅ Waits 10 seconds
   });
 }
 
-// Running the tasks in order
+// Running the tasks in order with error handling
 walkDog()
   .then((value) => {
     console.log(value);
