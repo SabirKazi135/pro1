@@ -1,13 +1,13 @@
 function walkDog() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const dogWalked = false; // Change to false to test rejection
+      const dogWalked = true; // Change to false to test rejection
       if (dogWalked) {
         resolve("You walk the Dog");
       } else {
         reject("You did not walk the dog");
       }
-    }, 1500); // ✅ Waits 1.5 seconds
+    }, 10000); // ✅ Waits 1.5 seconds
   });
 }
 
@@ -20,20 +20,20 @@ function cleanKitchen() {
       } else {
         reject("You did not clean the kitchen");
       }
-    }, 500); // ✅ Waits 0.5 seconds
+    }, 10000); // ✅ Waits 0.5 seconds
   });
 }
 
 function takeOutTrash() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const trashTakenOut = false; // Change to false to test rejection
+      const trashTakenOut = true; // Change to false to test rejection
       if (trashTakenOut) {
         resolve("Take out the trash");
       } else {
         reject("You did not take out the trash");
       }
-    }, 5000); // ✅ Waits 10 seconds
+    }, 10000); // ✅ Waits 10 seconds
   });
 }
 
@@ -71,24 +71,10 @@ function takeOutTrash() {
 //     console.error(error);
 //   }
 // }
-
-async function deChores() {
-  const walkDogResult = await walkDog().catch((error) => `Failed: ${error}`);
-  console.log(walkDogResult);
-
-  const cleanKitchenResult = await cleanKitchen().catch(
-    (error) => `Failed: ${error}`
-  );
-  console.log(cleanKitchenResult);
-
-  const takeOutTrashResult = await takeOutTrash().catch(
-    (error) => `Failed: ${error}`
-  );
-  console.log(takeOutTrashResult);
-
-  setTimeout(() => {
-    console.log("You complete all chores (even if some failed)");
-  }, 4000);
-}
-
-deChores();
+Promise.all([walkDog(), cleanKitchen(), takeOutTrash()])
+  .then((results) => {
+    console.log("All tasks completed:", results);
+  })
+  .catch((error) => {
+    console.log("One or more tasks failed:", error);
+  });
