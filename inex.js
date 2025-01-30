@@ -27,13 +27,13 @@ function cleanKitchen() {
 function takeOutTrash() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const trashTakenOut = true; // Change to false to test rejection
+      const trashTakenOut = false; // Change to false to test rejection
       if (trashTakenOut) {
         resolve("Take out the trash");
       } else {
         reject("You did not take out the trash");
       }
-    }, 10000); // ✅ Waits 10 seconds
+    }, 5000); // ✅ Waits 10 seconds
   });
 }
 
