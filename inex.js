@@ -27,7 +27,7 @@ function cleanKitchen() {
 function takeOutTrash() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const trashTakenOut = false; // Change to false to test rejection
+      const trashTakenOut = true; // Change to false to test rejection
       if (trashTakenOut) {
         resolve("Take out the trash");
       } else {
@@ -38,19 +38,34 @@ function takeOutTrash() {
 }
 
 // Running the tasks in order with error handling
-walkDog()
-  .then((value) => {
-    console.log(value);
-    return cleanKitchen(); // ✅ Waits before moving to the next task
-  })
-  .then((value) => {
-    console.log(value);
-    return takeOutTrash(); // ✅ Waits 10 seconds before continuing
-  })
-  .then((value) => {
-    console.log(value);
-    console.log("You Finished all the chores"); // ✅ Runs after all tasks are done
-  })
-  .catch((error) => {
-    console.log("Error:", error); // ❌ Handles any rejection from the promises
-  });
+// walkDog()
+//   .then((value) => {
+//     console.log(value);
+//     return cleanKitchen(); // ✅ Waits before moving to the next task
+//   })
+//   .then((value) => {
+//     console.log(value);
+//     return takeOutTrash(); // ✅ Waits 10 seconds before continuing
+//   })
+//   .then((value) => {
+//     console.log(value);
+//     console.log("You Finished all the chores"); // ✅ Runs after all tasks are done
+//   })
+//   .catch((error) => {
+//     console.log("Error:", error); // ❌ Handles any rejection from the promises
+//   });
+
+async function deChores() {
+  const walkDogResult = await walkDog();
+  console.log(walkDogResult);
+  const cleanKitchenResut = await cleanKitchen();
+  console.log(cleanKitchenResut);
+  const takeOutTrashResult = await takeOutTrash();
+  console.log(takeOutTrashResult);
+
+  setTimeout(() => {
+    console.log("You complete");
+  }, 4000);
+}
+
+deChores();
