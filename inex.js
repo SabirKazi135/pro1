@@ -26,8 +26,10 @@ function task4(callback) {
   }, 1500);
 }
 
-task1();
-task2();
-task3();
-task4();
-console.log("all tasks comple");
+task1(() => {
+  task2(() => {
+    task3(() => {
+      task4(() => console.log("All task comeplted"));
+    });
+  });
+});
