@@ -1,29 +1,43 @@
 function walkDog() {
-  setTimeout(() => {
-    return new Promise((resolve, reject) => {
-      console.log("You walk the Dog");
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("You walk the Dog");
     }, 1500);
   });
 }
 function cleanKitchen() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log("You clean the kitchen");
+      resolve("You clean the kitchen");
     });
   }, 500);
 }
 function takeOutTrash() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log("Take out the trash");
+      resolve("Take out the trash");
     });
-  }, 2500);
+  }, 10000);
 }
 
-walkDog(() => {
-  cleanKitchen(() => {
-    takeOutTrash(() => {
-      console.log("You finish all tasks");
-    });
+// walkDog(() => {
+//   cleanKitchen(() => {
+//     takeOutTrash(() => {
+//       console.log("You finish all tasks");
+//     });
+//   });
+// });
+
+walkDog()
+  .then((value) => {
+    console.log(value);
+    return cleanKitchen();
+  })
+  .then((value) => {
+    console.log(value);
+    return takeOutTrash();
+  })
+  .then((value) => {
+    console.log(value);
+    console.log("You Finished all the chores");
   });
-});
