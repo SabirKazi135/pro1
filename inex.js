@@ -1,7 +1,7 @@
 function walkDog() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const dogWalked = true; // Change to false to test rejection
+      const dogWalked = false; // Change to false to test rejection
       if (dogWalked) {
         resolve("You walk the Dog");
       } else {
@@ -56,16 +56,20 @@ function takeOutTrash() {
 //   });
 
 async function deChores() {
-  const walkDogResult = await walkDog();
-  console.log(walkDogResult);
-  const cleanKitchenResut = await cleanKitchen();
-  console.log(cleanKitchenResut);
-  const takeOutTrashResult = await takeOutTrash();
-  console.log(takeOutTrashResult);
+  try {
+    const walkDogResult = await walkDog();
+    console.log(walkDogResult);
+    const cleanKitchenResut = await cleanKitchen();
+    console.log(cleanKitchenResut);
+    const takeOutTrashResult = await takeOutTrash();
+    console.log(takeOutTrashResult);
 
-  setTimeout(() => {
-    console.log("You complete");
-  }, 4000);
+    setTimeout(() => {
+      console.log("You complete");
+    }, 4000);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 deChores();
