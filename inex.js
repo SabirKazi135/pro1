@@ -50,4 +50,7 @@ walkDog()
   .then((value) => {
     console.log(value);
     console.log("You Finished all the chores"); // ✅ Runs after all tasks are done
+  })
+  .catch((error) => {
+    console.log("Error:", error); // ❌ Handles any rejection from the promises
   });
