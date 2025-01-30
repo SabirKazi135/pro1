@@ -55,28 +55,10 @@ function takeOutTrash() {
 //     console.log("Error:", error); // ❌ Handles any rejection from the promises
 //   });
 
-async function deChores() {
-  try {
-    const walkDogResult = await walkDog();
-    console.log(walkDogResult);
-    const cleanKitchenResut = await cleanKitchen();
-    console.log(cleanKitchenResut);
-    const takeOutTrashResult = await takeOutTrash();
-    console.log(takeOutTrashResult);
-
-    setTimeout(() => {
-      console.log("You complete");
-    }, 4000);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-deChores();
-// Promise.all([walkDog(), cleanKitchen(), takeOutTrash()])
-//   .then((results) => {
-//     console.log("All tasks completed:", results);
-//   })
-//   .catch((error) => {
-//     console.log("One or more tasks failed:", error);
-//   });
+Promise.all([walkDog(), cleanKitchen(), takeOutTrash()])
+  .then((results) => {
+    console.log("All tasks completed:", results);
+  })
+  .catch((error) => {
+    console.log("One or more tasks failed:", error);
+  });
