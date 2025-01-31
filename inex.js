@@ -1,3 +1,3 @@
-document.cookie =
-  "firstName=sabir; expires=Sun, 01 Jan 2030 12:00:00 GMT; path=/";
-console.log(document.cookie);
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));
