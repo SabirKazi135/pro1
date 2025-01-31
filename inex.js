@@ -1,8 +1,5 @@
-const people = [
-  { name1: "sabir", age: 31 },
-  { name1: "sabir", age: 31 },
-  { name1: "sabir", age: 31 },
-  { name1: "sabir", age: 31 },
-];
-
-console.log(people);
+fetch("./names.json")
+  .then((response) => response.json())
+  .then((value) => {
+    console.log(value.users);
+  });
