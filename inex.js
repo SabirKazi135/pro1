@@ -22,7 +22,13 @@ let production = () => {
         setTimeout(() => {
           console.log("Te machne has been started");
           setTimeout(() => {
-            console.log(`${stocks.holder[0]}`);
+            console.log(`ice cream was placed on ${stocks.holder[0]} `);
+            setTimeout(() => {
+              console.log(`${stocks.toppings[0]} was added as toppings`);
+              setTimeout(() => {
+                console.log("serve the ice scream");
+              }, 2000);
+            }, 3000);
           }, 2000);
         }, 1000);
       }, 1000);
