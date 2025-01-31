@@ -1,3 +1,7 @@
+let stockts = {
+  fruits: ["strawberry", "grapes", "banana", "apple"],
+};
+
 let order = (call_production) => {
   console.log("Order placed, please call production");
   call_production();
