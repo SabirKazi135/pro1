@@ -21,6 +21,9 @@ let production = () => {
         console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was added`);
         setTimeout(() => {
           console.log("Te machne has been started");
+          setTimeout(() => {
+            console.log(`${stocks.holder[0]}`);
+          }, 2000);
         }, 1000);
       }, 1000);
     }, 2000);
