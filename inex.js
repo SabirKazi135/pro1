@@ -5,7 +5,7 @@ let stocks = {
   toppings: ["chocolate", "peanuts"],
 };
 
-let is_shop_open = false;
+let is_shop_open = true;
 
 function order(time, work) {
   return new Promise((resolve, reject) => {
@@ -14,34 +14,32 @@ function order(time, work) {
         resolve(work());
       }, time);
     } else {
-      reject(console.log("Our shop is closed"));
+      reject("Our shop is closed");
     }
   });
 }
 
-order(2000, () => {
-  console.log(`${stocks.Fruits[0]} was selected`);
-})
-  .then(() => order(0, () => console.log("Production has started")))
-  .then(() => order(2000, () => console.log("The fruit was chopped")))
-  .then(() =>
-    order(1000, () =>
+async function iceCreamProcess() {
+  try {
+    await order(2000, () => {
+      console.log(`${stocks.Fruits[0]} was selected`);
+    });
+    await order(0, () => console.log("Production has started"));
+    await order(2000, () => console.log("The fruit was chopped"));
+    await order(1000, () =>
       console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} were added`)
-    )
-  )
-  .then(() => order(2000, () => console.log("The machine has started")))
-  .then(() =>
-    order(2000, () =>
+    );
+    await order(2000, () => console.log("The machine has started"));
+    await order(2000, () =>
       console.log(`Ice cream was placed on ${stocks.holder[0]}`)
-    )
-  )
-  .then(() =>
-    order(3000, () =>
+    );
+    await order(3000, () =>
       console.log(`${stocks.toppings[0]} was added as toppings`)
-    )
-  )
-  .then(() => order(2000, () => console.log("Serve the ice cream")))
-  .catch(() => console.log("Customer left"))
-  .finally(() => {
-    console.log("day edned shop isclosed");
-  });
+    );
+    await order(2000, () => console.log("Serve the ice cream"));
+  } catch (error) {
+    console.log("Customer left");
+  }
+}
+
+iceCreamProcess();
