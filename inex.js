@@ -11,9 +11,13 @@ let order = (fruit_name, call_production) => {
     call_production();
   }, 2000);
 };
+
 let production = () => {
   setTimeout(() => {
     console.log("Prodction has stared");
+    setTimeout(() => {
+      console.log("The fruit has been chopped");
+    }, 2000);
   }, 0000);
 };
 
