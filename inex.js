@@ -4,3 +4,6 @@ function one() {
 function two() {
   console.log("step 2");
 }
+
+one();
+two();
