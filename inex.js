@@ -5,35 +5,40 @@ let stocks = {
   toppings: ["chocolate", "peanuts"],
 };
 
-let order = (fruit_name, call_production) => {
-  setTimeout(() => {
-    console.log(`${stocks.Fruits[fruit_name]} was selected`);
-    call_production();
-  }, 2000);
-};
+let is_shop_open = false;
 
-let production = () => {
-  setTimeout(() => {
-    console.log("Prodction has stared");
-    setTimeout(() => {
-      console.log("The fruit has been chopped");
+function order(time, work) {
+  return new Promise((resolve, reject) => {
+    if (is_shop_open) {
       setTimeout(() => {
-        console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was added`);
-        setTimeout(() => {
-          console.log("Te machne has been started");
-          setTimeout(() => {
-            console.log(`ice cream was placed on ${stocks.holder[0]} `);
-            setTimeout(() => {
-              console.log(`${stocks.toppings[0]} was added as toppings`);
-              setTimeout(() => {
-                console.log("serve the ice scream");
-              }, 2000);
-            }, 3000);
-          }, 2000);
-        }, 1000);
-      }, 1000);
-    }, 2000);
-  }, 0000);
-};
+        resolve(work());
+      }, time);
+    } else {
+      reject(console.log("Our shop is closed"));
+    }
+  });
+}
 
-order(0, production);
+order(2000, () => {
+  console.log(`${stocks.Fruits[0]} was selected`);
+})
+  .then(() => order(0, () => console.log("Production has started")))
+  .then(() => order(2000, () => console.log("The fruit was chopped")))
+  .then(() =>
+    order(1000, () =>
+      console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} were added`)
+    )
+  )
+  .then(() => order(2000, () => console.log("The machine has started")))
+  .then(() =>
+    order(2000, () =>
+      console.log(`Ice cream was placed on ${stocks.holder[0]}`)
+    )
+  )
+  .then(() =>
+    order(3000, () =>
+      console.log(`${stocks.toppings[0]} was added as toppings`)
+    )
+  )
+  .then(() => order(2000, () => console.log("Serve the ice cream")))
+  .catch(() => console.log("Customer left"));
