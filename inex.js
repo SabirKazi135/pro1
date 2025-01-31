@@ -6,8 +6,11 @@ let stocks = {
 };
 
 let order = (fruit_name, call_production) => {
+  setTimeout(() => {
+    console.log(`${stocks.Fruits[fruit_name]}`);
+  }, 2000);
   call_production();
 };
 let production = () => {};
 
-order("", production);
+order(0, production);
