@@ -41,4 +41,7 @@ order(2000, () => {
     )
   )
   .then(() => order(2000, () => console.log("Serve the ice cream")))
-  .catch(() => console.log("Customer left"));
+  .catch(() => console.log("Customer left"))
+  .finally(() => {
+    console.log("day edned shop isclosed");
+  });
