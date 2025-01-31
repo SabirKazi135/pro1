@@ -1,3 +1,5 @@
-fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-  .then((response) => console.log(response))
-  .catch((error) => console.error(error));
+console.log("1");
+console.log("2");
+console.log("3");
+console.log("4");
+console.log("5");
