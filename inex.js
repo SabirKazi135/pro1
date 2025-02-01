@@ -1,30 +1,13 @@
-// Wait for multiple APIs to resolve
-/*Promise.all([
-				fetch('https://jsonplaceholder.typicode.com/posts'),
-				fetch('https://jsonplaceholder.typicode.com/users')
-			]).then(function (responses) {
-				console.log(responses);
-			});*/
+// Create an async function
+async function getTheAnswer() {
+  return 42;
+}
 
-// Get the data from the responses
-Promise.all([
-  fetch("https://jsonplaceholder.typicode.com/posts"),
-  fetch("https://jsonplaceholder.typicode.com/users"),
-])
-  .then(function (responses) {
-    // Get a JSON object from each of the responses
-    return Promise.all(
-      responses.map(function (response) {
-        return response.json();
-      })
-    );
-  })
-  .then(function (data) {
-    // You would do something with both sets of data here
-    console.log(data);
-  })
-  .catch(function (error) {
-    console.log("-----------------");
-    // if there's an error, log it
-    console.log(error);
-  });
+// Assign the return to a variable
+let answer = getTheAnswer();
+console.log(answer);
+
+// Use Promise.then() to get the actual value
+// answer.then(function (data) {
+// 	console.log(data);
+// });
