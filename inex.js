@@ -1,23 +1,17 @@
 let sayHello = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(1);
-  }, 3000);
+  if (Math.random() < 0.5) {
+    reject("We reject");
+  }
+  resolve(42);
 });
 
 sayHello
   .then((num) => {
     console.log(num);
-    return num + 1;
   })
-  .then((num) => {
-    console.log(num);
-    return num + 1;
+  .catch((error) => {
+    console.log(error);
   })
-  .then((num) => {
-    console.log(num);
-    return num + 1;
-  })
-  .then((num) => {
-    console.log(num);
-    return num + 1;
+  .finally(() => {
+    console.log(" always run");
   });
