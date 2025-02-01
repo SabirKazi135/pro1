@@ -23,11 +23,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: 1s ease;
+        transition: 1s ease transform;
       }
 
       .hide {
-        transform: translateX(-320px);
+        transform: translateX(-380px);
       }
 
       ul li {
@@ -60,7 +60,7 @@
     </style>
   </head>
   <body>
-    <section class="sidebar">
+    <section class="sidebar hide">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
@@ -70,7 +70,13 @@
     </section>
 
     <div class="center">
-      <button>Click</button>
+      <button onclick="run()">Click</button>
     </div>
+    <script>
+      const sidebar = document.querySelector(".sidebar");
+      function run() {
+        sidebar.classList.toggle("hide");
+      }
+    </script>
   </body>
 </html>
