@@ -8,6 +8,6 @@ let answer = getTheAnswer();
 console.log(answer);
 
 // Use Promise.then() to get the actual value
-// answer.then(function (data) {
-// 	console.log(data);
-// });
+answer.then(function (data) {
+  console.log(data);
+});
