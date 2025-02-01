@@ -1,6 +1,6 @@
 function wakeUp() {
   return new Promise((resolve, reject) => {
-    let wakeUpIsTrue = true;
+    let wakeUpIsTrue = Math.random() < 0.5;
     if (wakeUpIsTrue) {
       setTimeout(() => {
         resolve("You wake up!");
@@ -13,7 +13,7 @@ function wakeUp() {
 
 function brushTeeth() {
   return new Promise((resolve, reject) => {
-    let isBrushTeeth = true;
+    let isBrushTeeth = Math.random() < 0.5;
     if (isBrushTeeth) {
       setTimeout(() => {
         resolve("You brushed your teeth");
@@ -26,7 +26,7 @@ function brushTeeth() {
 
 function makeBrakeFast() {
   return new Promise((resolve, reject) => {
-    let isMakeBrakeFast = true;
+    let isMakeBrakeFast = Math.random() < 0.5;
     if (isMakeBrakeFast) {
       setTimeout(() => {
         resolve("You made breakfast");
@@ -38,16 +38,19 @@ function makeBrakeFast() {
 }
 
 async function wakeupFun() {
-  try {
-    let msg = await wakeUp();
-    console.log(msg);
-    let msg2 = await brushTeeth();
-    console.log(msg2);
-    let msg3 = await brushTeeth();
-    console.log(msg3);
-  } catch (error) {
-    console.error(error);
-  }
+  let msg = await wakeUp().catch((err) => {
+    return "Skipping wake up";
+  });
+  console.log(msg);
+  let msg2 = await brushTeeth().catch((err) => {
+    return "Skipping brushing";
+  });
+  console.log(msg2);
+  let msg3 = await makeBrakeFast().catch((err) => {
+    return "skipping breakfast";
+  });
+  console.log(msg3);
+  // ✅ Will still log all results (successful or failed)
 }
 
 wakeupFun();
