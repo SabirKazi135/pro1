@@ -1,17 +1,11 @@
-let sayHello = new Promise((resolve, reject) => {
-  if (Math.random() < 0.5) {
-    reject("We reject");
-  }
-  resolve(42);
-});
-
-sayHello
-  .then((num) => {
-    console.log(num);
+fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+  .then((response) => {
+    return response.json(); // parse the JSON response
+  })
+  .then((data) => {
+    console.log(`data <br>${data.name}<br> is here`); // Access the 'name' property of the Pokémon
   })
   .catch((error) => {
+    console.log("Unable to load");
     console.log(error);
-  })
-  .finally(() => {
-    console.log(" always run");
   });
