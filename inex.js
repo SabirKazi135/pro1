@@ -1,13 +1,51 @@
-// Create an async function
-async function getTheAnswer() {
-  return 42;
+/**
+ * A traditional function
+ * Get an article by its ID
+ * @param  {Integer} id The article ID
+ */
+function getArticleByID(id) {
+  fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    .then(function (response) {
+      // If the response is successful, get the JSON data
+      if (response.ok) {
+        return response.json();
+      }
+
+      // Otherwise, throw an error
+      throw "Something went wrong.";
+    })
+    .then(function (data) {
+      console.log(data);
+    })
+    .catch(function (error) {
+      console.warn(error);
+    });
 }
 
-// Assign the return to a variable
-let answer = getTheAnswer();
-console.log(answer);
+// Get the article with an ID of 3
+getArticleByID(3);
 
-// Use Promise.then() to get the actual value
-answer.then(function (data) {
+/**
+ * An async function
+ * Get an article by its ID
+ * @param  {Integer} id The article ID
+ */
+async function getArticleByIDAsync(id) {
+  // Get the post data
+  let response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${id}`
+  );
+
+  // If the call failed, throw an error
+  if (!response.ok) {
+    throw "Something went wrong.";
+  }
+
+  // Otherwise, get the post JSON
+  let data = await response.json();
+
+  // Log the data to the console
   console.log(data);
-});
+}
+
+getArticleByIDAsync(3);
