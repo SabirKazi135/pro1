@@ -1,10 +1,29 @@
-fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-  .then((response) => {
-    return response.json(); // parse the JSON response
+// Wait for multiple APIs to resolve
+/*Promise.all([
+				fetch('https://jsonplaceholder.typicode.com/posts'),
+				fetch('https://jsonplaceholder.typicode.com/users')
+			]).then(function (responses) {
+				console.log(responses);
+			});*/
+
+// Get the data from the responses
+Promise.all([
+  fetch("https://jsonplaceholder.typicode.com/posts"),
+  fetch("https://jsonplaceholder.typicode.com/users"),
+])
+  .then(function (responses) {
+    // Get a JSON object from each of the responses
+    return Promise.all(
+      responses.map(function (response) {
+        return response.json();
+      })
+    );
   })
-  .then((data) => {
-    console.log(data); // Access the 'name' property of the Pokémon
+  .then(function (data) {
+    // You would do something with both sets of data here
+    console.log(data);
   })
-  .catch((error) => {
+  .catch(function (error) {
+    // if there's an error, log it
     console.log(error);
   });
