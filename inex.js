@@ -4,7 +4,20 @@ function wakeUp() {
     if (wakeUpIsTrue) {
       setTimeout(() => {
         resolve("wake up after 2 sec");
-      }, 2000);
+      }, 1000);
+    } else {
+      reject("did not wake up");
+    }
+  });
+}
+
+function brushTeeth() {
+  return new Promise((resolve, reject) => {
+    let isBrushTeeth = true;
+    if (isBrushTeeth) {
+      setTimeout(() => {
+        resolve("wake up after 2 sec");
+      }, 1000);
     } else {
       reject("did not wake up");
     }
