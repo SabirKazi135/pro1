@@ -1,14 +1,23 @@
 let sayHello = new Promise((resolve, reject) => {
-  reject("Unable to say hi.");
   setTimeout(() => {
-    resolve("hi, universe");
-  }, 5000);
+    resolve(1);
+  }, 3000);
 });
 
 sayHello
-  .then((msg) => {
-    console.log(msg);
+  .then((num) => {
+    console.log(num);
+    return num + 1;
   })
-  .catch((error) => {
-    console.log(error);
+  .then((num) => {
+    console.log(num);
+    return num + 1;
+  })
+  .then((num) => {
+    console.log(num);
+    return num + 1;
+  })
+  .then((num) => {
+    console.log(num);
+    return num + 1;
   });
