@@ -24,6 +24,7 @@ Promise.all([
     console.log(data);
   })
   .catch(function (error) {
+    console.log("-----------------");
     // if there's an error, log it
     console.log(error);
   });
