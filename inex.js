@@ -3,3 +3,7 @@ let sayHello = new Promise((resolve, reject) => {
     resolve("hi, universe");
   }, 5000);
 });
+
+sayHello.then((msg) => {
+  console.log(msg);
+});
