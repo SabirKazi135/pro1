@@ -6,11 +6,34 @@
     <title>Document</title>
     <style>
       body {
-        background-color: gray;
+        background-color: #1b1b1b;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      section.sidebar {
+        height: 100vh;
+        width: 20%;
+        background-color: #292929;
       }
     </style>
   </head>
   <body>
-    <script src="inex.js"></script>
+    <section class="sidebar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </section>
+
+    <div class="center">
+      <button>Click</button>
+    </div>
   </body>
 </html>
