@@ -1,28 +1,23 @@
-/**
- * An async function
- * Get an article by its ID
- * @param  {Integer} id The article ID
- */
-async function getArticleByIDAsync(id) {
-  // Get the post data
-  try {
-    let response = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
-    );
-
-    // If the call failed, throw an error
-    if (!response.ok) {
-      throw "Something went wrong.";
+function wakeUp() {
+  return new Promise((resolve, reject) => {
+    let wakeUpIsTrue = true;
+    if (wakeUpIsTrue) {
+      setTimeout(() => {
+        resolve("wake up after 2 sec");
+      }, 2000);
+    } else {
+      reject("did not wake up");
     }
+  });
+}
 
-    // Otherwise, get the post JSON
-    let data = await response.json();
-
-    // Log the data to the console
-    console.log(data);
+async function wakeupFun() {
+  try {
+    let msg = await wakeUp();
+    console.log(msg);
   } catch (error) {
-    console.warn(error);
+    console.error(error);
   }
 }
 
-getArticleByIDAsync(9999);
+wakeupFun();
