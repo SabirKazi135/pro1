@@ -58,7 +58,9 @@
     </a>
     <script>
       const btnEl = document.getElementById("btn");
-      
+      btnEl.addEventListener("mouseover", (event) => {
+        console.log(event.pageX - btnEl.offsetTop);
+      });
     </script>
   </body>
 </html>
