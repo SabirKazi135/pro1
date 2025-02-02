@@ -26,17 +26,24 @@
         text-decoration: none;
         color: black;
         position: relative;
+        overflow: hidden;
+      }
+
+      .btn span {
+        position: relative;
+        z-index: 1;
       }
 
       .btn::before {
         content: "";
         position: absolute;
         background-color: orangered;
-        height: 20px;
-        width: 20px;
+        height: 0;
+        width: 0;
         left: 50%;
         right: 50%;
         transform: translate(-50%, -50%);
+        transition: width 0.5s, height 0.5s;
       }
 
       .btn:hover::before {
