@@ -88,7 +88,12 @@
         "Friday",
         "Saturday",
       ];
+
       const date = new Date();
+      monthName.textContent = months[date.getMonth()];
+      dayName.textContent = weekdays[date.getDay()];
+      dayNum.textContent = date.getDate();
+      year.textContent = date.getFullYear();
     </script>
   </body>
 </html>
