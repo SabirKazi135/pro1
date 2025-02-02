@@ -40,8 +40,8 @@
         background-color: orangered;
         height: 0;
         width: 0;
-        left: 50%;
-        right: 50%;
+        left: var(--xPos);
+        top: var(--yPos);
         transform: translate(-50%, -50%);
         transition: width 0.5s, height 0.5s;
       }
@@ -59,7 +59,11 @@
     <script>
       const btnEl = document.getElementById("btn");
       btnEl.addEventListener("mouseover", (event) => {
-        console.log(event.pageX - btnEl.offsetLeft);
+        const x = event.pageX - btnEl.offsetLeft;
+        const y = event.pageY - btnEl.offsetTop;
+
+        btnEl.style.setProperty("--xPos", x + "px");
+        btnEl.style.setProperty("--yPos", y + "px");
       });
     </script>
   </body>
